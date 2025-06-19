@@ -1,0 +1,24 @@
+1. Middleware: a function that get invoke/run/execute on every request&response. it has access to response and request object.
+    -Between client and app function comes the middleware which checks whether the response is correct or have any issues or mont not basically it validates 
+     it validated the request if successfull it let the request access the app function if not it ends the request and response cycle.
+    - In one code there can be multiple middleware, dividing code in chunks and every middleware have their specified functions.
+    - Acts as plugin or middle man.
+    - Call the next middleware in the stack.
+    - Changes made to request and response will be available throught the code
+
+    How middleware are made:
+        app.use(handler-function)
+        example
+        app.use((req,res,next)=>{
+            console.log("hello from middleware 1");   {remember to close the middleware otherwise it i'll hold the request leadin to freeze}
+            return res.json({mgs:"hello from middleware2"});  {till this step it again stops at middleware doesn;t go to next step}
+            next();                 {in this step we call next function}
+        })
+
+        after this it will go to our routes( basiaclly CRUD Api)
+
+        next : denotes route
+
+
+
+2. 
