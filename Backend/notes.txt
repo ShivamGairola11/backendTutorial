@@ -67,3 +67,9 @@
      It has Schema - in which you define structure.
      Schema-Model 
      Using MOdel we do CRUD Operation.
+
+7. Easy way to write request with ID are: 
+    .route("/user/:id")
+    .get((req,res)=>{})
+    .patch((req,res)=>{})
+    .delete((req,res)=>{})
