@@ -1,10 +1,35 @@
 const express = require("express");
 const users = require("./MOCK_DATA.json")
 const fs = require('fs')
-
+const mongoose = require("mongoose");
 
 const app = express();
 const PORT = 8000;
+
+// For connecting DB you need to define Schema:
+const userSchema = new mongoose.Schema({
+    firstName:{
+        type:String,
+        required :true,
+    },
+    lastName:{
+        type: String,
+    },
+    email:{
+        type: String,
+        required: true,
+        unique:true,
+    },
+    jobTitle:{
+        type: String,
+    },
+    gender:{
+        type:String,
+    }
+})
+// After defining schema now you need to define model. "user": this is name given to model
+const User = mongoose.model("user",userSchema )
+
 
 // Using plugins: middleware
 app.use(express.urlencoded({extended:false}))
@@ -58,16 +83,16 @@ app.patch("/users/:id",(req,res)=>{
         newContent.email = email || newContent.email;
         newContent.gender = gender || newContent.gender;
         newContent.job_title = job_title || newContent.job_title;
-        res.json(newContent);
+        res.status(201).json(newContent);
     }
     else{
         res.status(404).send("User not found")
     }
 })
-
-
-
-
- 
+// Adding header to your response:
+app.get("/users",(req,res)=>{
+    res.setHeader('Name of header here', 'And its value')
+    return res.json (users);
+}) 
 
 app.listen(PORT,()=> console.log("app is launched"))

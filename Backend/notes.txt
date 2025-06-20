@@ -21,4 +21,49 @@
 
 
 
-2. 
+2. to Set header simply use: Custom header
+    - custom header good practice is appending X to signify that this is custom header ex: X-MyName when checked on postman it
+    shows that this is custom header.
+    - res.setHeader('myName','shivamGairola')
+    return res.json(users);
+    - to check header console.log(res.headers)
+
+    HEADER: are important part of API request & response  as theu contain meta data associated with API req and response
+
+3. Optimised way of iterating over keys when making a patch request is :
+    const user = users.find(u => u.id === id);
+    Object.keys(body).forEach(key=>{
+        if(user.hasOwnProperty(key)){
+            user[key] = body[key];
+        }
+    });
+    res.json(user);
+
+4.  Status codes:
+    Informational responses 100-199
+    successfull Responses   200-299  
+    redirection messages  300-399
+    client error responses 400-499
+    server error responses 500-599
+
+5.  No SQL document based database, work on BSON format 
+    Best for Node application
+    - How it works:
+    Collection - "Users"
+    ---------   --------
+    DOCUMENT1    DOCUEMNT2
+
+    Few mongo db command:
+    show dbs 
+    use <db_name>
+    show collections   
+    db.coll.find()  : SO IF YOU PERFORM THIS IT I'LL GIVE YOU DOCUMENT, CAN BE CALLED AS ARRAY OF DOCUMENT
+    db.coll.insert()
+
+    Mongoose is package using which i can connect mongoDb with node application.
+
+
+6. Mongoose working:
+     It has Schema - in which you define structure.
+     Schema-Model 
+     Using MOdel we do CRUD Operation.
